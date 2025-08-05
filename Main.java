@@ -20,8 +20,8 @@ public class Main {
         WorkoutService workoutService = WorkoutService.getInstance();
         ReservationService reservationService = ReservationService.getInstance();
 
-        // ... (тук ползваш User.Builder както ти пратих)
-        // Пример:
+       
+        
         System.out.println("Въведи потребител (User) данни:");
         System.out.print("ID: ");
         int userId = Integer.parseInt(scanner.nextLine());
@@ -44,8 +44,8 @@ public class Main {
 
         userService.register(user);
 
-        // ... продължава както ти писах преди
 
         scanner.close();
     }
+
 }
