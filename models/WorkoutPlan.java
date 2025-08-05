@@ -5,14 +5,12 @@ public class WorkoutPlan {
     private int userId;
     private String description;
 
-    // Приватен конструктор, използван само от Builder
     private WorkoutPlan(Builder builder) {
         this.id = builder.id;
         this.userId = builder.userId;
         this.description = builder.description;
     }
 
-    // Getters
     public int getId() {
         return id;
     }
@@ -25,7 +23,6 @@ public class WorkoutPlan {
         return description;
     }
 
-    // ✅ Builder вътрешен клас
     public static class Builder {
         private int id;
         private int userId;
@@ -50,4 +47,5 @@ public class WorkoutPlan {
             return new WorkoutPlan(this);
         }
     }
+
 }
