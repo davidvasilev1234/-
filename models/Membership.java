@@ -5,11 +5,10 @@ import java.time.LocalDate;
 public class Membership {
     private int id;
     private int userId;
-    private String type; // monthly, yearly, gold и др.
+    private String type; 
     private LocalDate startDate;
     private LocalDate endDate;
 
-    // Приватен конструктор за Builder-а
     private Membership(Builder builder) {
         this.id = builder.id;
         this.userId = builder.userId;
@@ -18,14 +17,12 @@ public class Membership {
         this.endDate = builder.endDate;
     }
 
-    // Getters
     public int getId() { return id; }
     public int getUserId() { return userId; }
     public String getType() { return type; }
     public LocalDate getStartDate() { return startDate; }
     public LocalDate getEndDate() { return endDate; }
 
-    // Builder вътрешен клас
     public static class Builder {
         private int id;
         private int userId;
@@ -62,4 +59,5 @@ public class Membership {
             return new Membership(this);
         }
     }
+
 }
