@@ -8,7 +8,6 @@ public class Reservation {
     private int trainerId;
     private LocalDateTime time;
 
-    // Приватен конструктор за Builder
     private Reservation(Builder builder) {
         this.id = builder.id;
         this.userId = builder.userId;
@@ -16,18 +15,15 @@ public class Reservation {
         this.time = builder.time;
     }
 
-    // Getters
     public int getId() { return id; }
     public int getUserId() { return userId; }
     public int getTrainerId() { return trainerId; }
     public LocalDateTime getTime() { return time; }
 
-    // Опционално: ако искаш да се връща само датата като текст (примерна имплементация)
     public String getDate() {
         return time != null ? time.toLocalDate().toString() : "Няма дата";
     }
 
-    // Builder вътрешен клас
     public static class Builder {
         private int id;
         private int userId;
@@ -58,4 +54,5 @@ public class Reservation {
             return new Reservation(this);
         }
     }
+
 }
