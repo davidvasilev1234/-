@@ -15,7 +15,6 @@ public class User {
         this.role = builder.role;
     }
 
-    // Getters
     public int getId() { return id; }
     public String getName() { return name; }
     public String getEmail() { return email; }
@@ -39,4 +38,5 @@ public class User {
             return new User(this);
         }
     }
+
 }
