@@ -37,4 +37,5 @@ public class UserService {
     public User getUserProfile(String email) {
         return userByEmail.get(email);
     }
+
 }
