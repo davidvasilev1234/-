@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trainers</title>
+    <style>
+        body { font-family: Arial; background: #f2f6fc; margin:0; padding:0; }
+        h1 { text-align:center; color:#2c3e50; margin-top:30px; }
+        table { width:80%; margin:30px auto; border-collapse: collapse; background:#fff; box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+        th,td { padding:15px; text-align:center; border-bottom:1px solid #ddd;}
+        th { background:#3498db; color:#fff; text-transform:uppercase; }
+        tr:hover { background:#f1f9ff; }
+    </style>
+</head>
+<body>
+<h1>Trainers List</h1>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Specialty</th>
+    </tr>
+    <tr th:each="t : ${trainers}">
+        <td th:text="${t.name}">Trainer Name</td>
+        <td th:text="${t.specialty}">Specialty</td>
+    </tr>
+</table>
+</body>
+</html>

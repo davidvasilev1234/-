@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Фитнес карти</title>
+  <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+        }
+        .hero {
+            position: relative;
+            background: url('/images/cards.jpg') no-repeat center center/cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #e67e22;
+        }
+    </style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-overlay">
+    <h1>Фитнес карти</h1>
+    <p>Виж цените и предимствата на картите</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <h2>Месечна карта</h2>
+    <p class="price">30 лв.</p>
+    <p>Достъп до залата за 1 месец</p>
+  </div>
+  <div class="card">
+    <h2>6 Месеца</h2>
+    <p class="price">150 лв.</p>
+    <p>По-ниска цена за редовни клиенти</p>
+  </div>
+  <div class="card">
+    <h2>12 Месеца</h2>
+    <p class="price">280 лв.</p>
+    <p>Най-изгодната оферта</p>
+  </div>
+  <div class="card">
+    <h2>Златна карта</h2>
+    <p class="price">500 лв.</p>
+    <p>Фитнес + хранителни добавки</p>
+  </div>
+  <div class="card">
+    <h2>Диамантена карта</h2>
+    <p class="price">800 лв.</p>
+    <p>Фитнес + добавки + СПА</p>
+  </div>
+</div>
+</body>
+</html>
