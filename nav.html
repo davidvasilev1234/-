@@ -1,0 +1,23 @@
+<div th:fragment="nav(currentUser)" xmlns:th="http://www.w3.org/1999/xhtml">
+  <header class="site__header">
+    <div class="container header__bar">
+      <a th:href="@{/}" class="brand"><span class="brand__text">My Fitness</span></a>
+      <nav class="nav">
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/workouts}">Workouts</a>
+        <a th:href="@{/memberships}">Memberships</a>
+        <a th:href="@{/nutrition}">Nutrition Plan</a>
+        <a th:href="@{/trainers}">Trainers</a>
+        <a th:href="@{/contact}">Contact</a>
+        <span th:if="${currentUser == null}">
+          <a th:href="@{/login}">Login</a>
+          <a th:href="@{/register}">Register</a>
+        </span>
+        <span th:if="${currentUser != null}">
+          <span class="muted">Здрасти, <b th:text="${currentUser}">user</b></span>
+          <a th:href="@{/logout}" class="btn btn--primary">Изход</a>
+        </span>
+      </nav>
+    </div>
+  </header>
+</div>

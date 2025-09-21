@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Членства</title><meta name="viewport" content="width=device-width, initial-scale=1"><link th:href="@{/css/style.css}" rel="stylesheet"></head>
+<body class="site">
+<header class="site__header"><div class="container header__bar">
+  <a th:href="@{/}" class="brand"><span class="brand__dot"></span><span class="brand__text">My Fitness</span></a>
+  <nav class="nav">
+    <a th:href="@{/}">Home</a><a th:href="@{/workouts}">Workouts</a>
+    <a th:href="@{/memberships}" class="is-active">Memberships</a><a th:href="@{/nutrition}">Nutrition Plan</a>
+    <a th:href="@{/trainers}">Trainers</a><a th:href="@{/contact}">Contact</a><a th:href="@{/login}">Login</a>
+  </nav></div></header>
+<main class="section section--alt"><div class="container">
+  <h2 class="section__title">Нашите членства</h2>
+  <div class="grid grid--3">
+    <article class="price" th:each="m : ${memberships}" th:classappend="${m.featured} ? ' price--featured'">
+      <div class="price__badge" th:if="${m.featured}">Популярно</div>
+      <h3 class="price__tier" th:text="${m.tier}">Tier</h3>
+      <p class="price__value"><strong th:text="${m.price}">Price</strong></p>
+      <p class="price__desc" th:text="${m.desc}">Desc</p>
+    </article>
+  </div>
+</div></main>
+<footer class="site__footer"><div class="container footer__inner"><p>© 2025 My Fitness</p></div></footer>
+</body></html>

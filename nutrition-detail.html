@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${plan.title} + ' — Nutrition Plan'">Nutrition Plan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body class="site" th:with="currentUser=${session.currentUser}">
+<div th:replace="fragments/nav :: nav(${currentUser})"></div>
+
+<main class="section">
+    <div class="container">
+        <h2 class="section__title" th:text="${plan.title}">Заглавие</h2>
+        <p class="section__lead" th:text="${plan.summary}">Описание</p>
+
+        <div class="grid" style="gap:1rem; margin-top:1rem">
+            <article class="card" th:each="m : ${plan.meals}">
+                <p class="card__text" th:text="${m}">meal</p>
+            </article>
+        </div>
+
+        <div class="mt-lg">
+            <a th:href="@{/nutrition}" class="btn btn--primary">← обратно към Nutrition Plan</a>
+        </div>
+    </div>
+</main>
+
+<footer class="site__footer"><div class="container footer__inner"><p>© 2025 My Fitness</p></div></footer>
+</body>
+</html>

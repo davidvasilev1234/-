@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin — Contact Messages</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+  <style>
+    .admin-wrap{width:min(1100px,96%);margin:2rem auto}
+    table{width:100%;border-collapse:collapse;border:1px solid rgba(255,255,255,.08)}
+    th,td{padding:.7rem;border-top:1px solid rgba(255,255,255,.08);vertical-align:top}
+    th{background:var(--panel)}
+    .actions{display:flex;gap:.4rem}
+    .btn-del{background:#e25b5b;color:#111;border:0;padding:.45rem .7rem;border-radius:10px;font-weight:800;cursor:pointer}
+    .btn-warn{background:#f7b500;color:#111;border:0;padding:.45rem .7rem;border-radius:10px;font-weight:800;cursor:pointer}
+    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body class="site">
+<div class="admin-wrap">
+  <div class="topbar">
+    <h2>Получени съобщения <span class="muted" th:text="'(' + ${count} + ')'">()</span></h2>
+    <div class="actions">
+      <a th:href="@{/}" class="btn btn--primary">← Към сайта</a>
+      <form th:action="@{/admin/messages/delete-all}" method="post"
+            onsubmit="return confirm('Сигурни ли сте, че искате да изтриете ВСИЧКИ съобщения?')">
+        <button class="btn-warn" type="submit">Изтрий всички</button>
+      </form>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+    <tr>
+      <th style="width:70px">ID</th>
+      <th style="width:180px">Име / Имейл</th>
+      <th style="width:220px">Тема</th>
+      <th>Съобщение</th>
+      <th style="width:120px">Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="m : ${messages}">
+      <td th:text="${m.id}">1</td>
+      <td>
+        <div><strong th:text="${m.name}">Име</strong></div>
+        <div class="muted" th:text="${m.email}">email@example.com</div>
+      </td>
+      <td th:text="${m.subject}">Тема…</td>
+      <td th:text="${m.message}">Съобщение…</td>
+      <td>
+        <form th:action="@{'/admin/messages/' + ${m.id} + '/delete'}" method="post"
+              onsubmit="return confirm('Да изтрием ли съобщение #' + [[${m.id}]] + '?')">
+          <button class="btn-del" type="submit">Изтрий</button>
+        </form>
+      </td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(messages)}">
+      <td colspan="5" class="muted">Няма съобщения.</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

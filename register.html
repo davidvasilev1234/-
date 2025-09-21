@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="utf-8"><title>Регистрация</title>
+  <link th:href="@{/css/style.css}" rel="stylesheet"></head>
+<body class="site" th:with="currentUser=${session.currentUser}">
+<div th:replace="fragments/nav :: nav(${currentUser})"></div>
+<main class="section">
+  <div class="container" style="max-width:520px">
+    <h2 class="section__title">Регистрация</h2>
+    <p th:if="${error}" style="color:#ff7e7e" th:text="${error}"></p>
+    <form th:action="@{/register}" method="post" class="form">
+      <label class="form__label">Потребителско име <input class="form__input" name="username" required></label>
+      <label class="form__label">Парола <input class="form__input" type="password" name="password" required></label>
+      <button class="btn btn--primary">Създай акаунт</button>
+    </form>
+    <p class="muted mt-lg">Имаш акаунт? <a th:href="@{/login}">Вход</a></p>
+  </div>
+</main>
+</body></html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>My Fitness — Начало</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body class="site">
+<header class="site__header">
+  <div class="container header__bar">
+    <a th:href="@{/}" class="brand"><span class="brand__dot"></span><span class="brand__text">My Fitness</span></a>
+    <nav class="nav">
+      <a th:href="@{/}" class="is-active">Home</a>
+      <a th:href="@{/workouts}">Workouts</a>
+      <a th:href="@{/memberships}">Memberships</a>
+      <a th:href="@{/nutrition}">Nutrition Plan</a>
+      <a th:href="@{/trainers}">Trainers</a>
+      <a th:href="@{/contact}">Contact</a>
+      <a th:href="@{/login}">Login</a>
+    </nav>
+  </div>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div class="hero__bg"></div>
+    <div class="container hero__content">
+      <h1 class="hero__title">Добре дошли в <span class="accent">My Fitness</span></h1>
+      <p class="hero__subtitle">Вашият път към по-здраво тяло започва тук!</p>
+      <a th:href="@{/workouts}" class="btn btn--primary">Виж тренировките</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section__title">Тренировъчни програми</h2>
+      <div class="grid grid--3">
+        <article class="card"><h3 class="card__title">Full Body Workout</h3><p class="card__text">Програма за цялото тяло — 3 пъти седмично.</p></article>
+        <article class="card"><h3 class="card__title">Strength Training</h3><p class="card__text">Фокус върху сила и мускулна маса.</p></article>
+        <article class="card"><h3 class="card__title">Cardio &amp; Fat Burn</h3><p class="card__text">Кардио тренировки за изгаряне на мазнини.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <h2 class="section__title">Нашите членства</h2>
+      <div class="grid grid--3">
+        <article class="price"><h3 class="price__tier">Basic</h3><p class="price__value"><strong>50 лв/месец</strong></p><p class="price__desc">Достъп до всички тренировки.</p></article>
+        <article class="price price--featured"><div class="price__badge">Популярно</div><h3 class="price__tier">Standard</h3><p class="price__value"><strong>250 лв/6 месеца</strong></p><p class="price__desc">Спести и тренирай редовно.</p></article>
+        <article class="price"><h3 class="price__tier">Premium</h3><p class="price__value"><strong>450 лв/година</strong></p><p class="price__desc">Неограничен достъп целогодишно.</p></article>
+      </div>
+      <div class="center mt-lg">
+        <a th:href="@{/contact}" class="btn btn--primary">Запиши се</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site__footer">
+  <div class="container footer__inner">
+    <p>© 2025 My Fitness</p>
+    <a class="footer__link" th:href="@{/}">⬆︎ Върни се нагоре</a>
+  </div>
+</footer>
+</body>
+</html>

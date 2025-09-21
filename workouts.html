@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Тренировъчни програми</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body class="site" th:with="currentUser=${session.currentUser}">
+<div th:replace="fragments/nav :: nav(${currentUser})"></div>
+
+<main class="section">
+  <div class="container">
+    <h2 class="section__title">Тренировъчни програми</h2>
+    <div class="grid grid--3">
+      <a class="card" th:each="w : ${workouts}" th:href="@{/workouts/{slug}(slug=${w.slug})}" style="display:block">
+        <h3 class="card__title" th:text="${w.title}">Title</h3>
+        <p class="card__text" th:text="${w.summary}">Summary</p>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer class="site__footer"><div class="container footer__inner"><p>© 2025 My Fitness</p></div></footer>
+</body>
+</html>

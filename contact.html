@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"><title>Контакт — My Fitness</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+  <style>
+    .contact-grid{display:grid;grid-template-columns:2fr 1fr;gap:1.2rem}
+    @media (max-width:920px){.contact-grid{grid-template-columns:1fr}}
+    .info-card{background:var(--panel-2);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:1rem}
+    .faq details{background:var(--panel-2);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:0.8rem 1rem}
+    .faq details+details{margin-top:.6rem}
+    .faq summary{cursor:pointer;font-weight:700}
+    .badge{display:inline-block;background:var(--brand);color:#101010;border-radius:999px;padding:.15rem .5rem;font-weight:800;font-size:.75rem}
+    .muted-small{color:var(--muted);font-size:.9rem}
+    .list{margin:.6rem 0 0 0;padding:0;list-style:none}
+    .list li{padding:.2rem 0}
+    .recent{display:grid;gap:.6rem}
+    .recent-item{background:var(--panel-2);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:.7rem 1rem}
+  </style>
+</head>
+<body class="site" th:with="currentUser=${session.currentUser}">
+<div th:replace="fragments/nav :: nav(${currentUser})"></div>
+
+<main class="section">
+  <div class="container">
+    <h2 class="section__title">Свържи се с нас</h2>
+    <p class="section__lead">Пиши ни за членства, тренировки или индивидуален план. Отговаряме до 1 работен ден.</p>
+
+    <div class="contact-grid">
+      <!-- Лява колона: форма + FAQ -->
+      <div>
+        <div class="info-card">
+          <h3 style="margin:.2rem 0 1rem">Изпрати съобщение</h3>
+
+          <div th:if="${sent}" class="info-card" style="background:#13210f;border-color:#234717;margin-bottom:1rem">
+            <span class="badge">✔ Изпратено</span>
+            <p class="muted-small" style="margin:.4rem 0 0">Благодарим! Ще се свържем с теб скоро.</p>
+          </div>
+
+          <form class="form" th:action="@{/contact}" method="post">
+            <div class="form__row">
+              <label class="form__label">Име
+                <input class="form__input" type="text" name="name" placeholder="Вашето име" required>
+              </label>
+              <label class="form__label">Имейл
+                <input class="form__input" type="email" name="email" placeholder="name@example.com" required>
+              </label>
+            </div>
+            <label class="form__label">Тема
+              <input class="form__input" type="text" name="subject" placeholder="Пример: Индивидуални тренировки" required>
+            </label>
+            <label class="form__label">Съобщение
+              <textarea class="form__input form__textarea" rows="6" name="message" placeholder="Как можем да помогнем?" required></textarea>
+            </label>
+            <button class="btn btn--primary">Изпрати</button>
+          </form>
+        </div>
+
+        <div class="faq" style="margin-top:1rem">
+          <h3 style="margin:.8rem 0">ЧЗВ</h3>
+          <details>
+            <summary>Мога ли да пробвам безплатно?</summary>
+            <p class="muted-small">Да, първата тренировка е безплатна след записване през формата.</p>
+          </details>
+          <details>
+            <summary>Имате ли индивидуални планове?</summary>
+            <p class="muted-small">Да — персонализираме тренировки и хранене, включително онлайн коучинг.</p>
+          </details>
+          <details>
+            <summary>Работно време на залата?</summary>
+            <p class="muted-small">Пон–Пет 07:00–22:00, Съб 08:00–20:00, Нед 09:00–18:00.</p>
+          </details>
+        </div>
+      </div>
+
+      <!-- Дясна колона: контакти + работно време + локация + последни съобщения -->
+      <aside class="info-card">
+        <h3 style="margin:.2rem 0 1rem">Контакти</h3>
+        <ul class="list">
+          <li><strong>Телефон:</strong> <a href="tel:+359888000000">+359 888 000 000</a></li>
+          <li><strong>Имейл:</strong> <a href="mailto:info@myfitness.bg">info@myfitness.bg</a></li>
+          <li><strong>Адрес:</strong> София, ул. Фитнес 1</li>
+        </ul>
+
+        <h4 style="margin:1rem 0 .4rem">Работно време</h4>
+        <ul class="list muted-small">
+          <li>Пон–Пет: 07:00–22:00</li>
+          <li>Събота: 08:00–20:00</li>
+          <li>Неделя: 09:00–18:00</li>
+        </ul>
+
+        <h4 style="margin:1rem 0 .4rem">Локация</h4>
+        <div style="border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.06);">
+          <!-- Без API ключ – само демо embed на Google Maps за София -->
+          <iframe
+                  src="https://www.google.com/maps?q=Sofia,Bulgaria&output=embed"
+                  width="100%" height="220" style="border:0;" loading="lazy"></iframe>
+        </div>
+
+        <h4 style="margin:1rem 0 .4rem">Последни съобщения</h4>
+        <div class="recent" th:if="${recentCount > 0}">
+          <div class="recent-item" th:each="m : ${recent}">
+            <p class="muted-small"><strong th:text="${m.name}">Име</strong> &middot; <span th:text="${m.email}">email</span></p>
+            <p class="muted-small" th:text="${m.subject}">Тема</p>
+            <p class="card__text" th:text="${m.message}">Съобщение…</p>
+          </div>
+        </div>
+        <p class="muted-small" th:if="${recentCount == 0}">Все още няма изпратени съобщения.</p>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer class="site__footer">
+  <div class="container footer__inner"><p>© 2025 My Fitness</p></div>
+</footer>
+</body>
+</html>

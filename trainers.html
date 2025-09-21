@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Треньори</title><meta name="viewport" content="width=device-width, initial-scale=1"><link th:href="@{/css/style.css}" rel="stylesheet"></head>
+<body class="site">
+<header class="site__header"><div class="container header__bar">
+    <a th:href="@{/}" class="brand"><span class="brand__dot"></span><span class="brand__text">My Fitness</span></a>
+    <nav class="nav">
+        <a th:href="@{/}">Home</a><a th:href="@{/workouts}">Workouts</a>
+        <a th:href="@{/memberships}">Memberships</a><a th:href="@{/nutrition}">Nutrition Plan</a>
+        <a th:href="@{/trainers}" class="is-active">Trainers</a><a th:href="@{/contact}">Contact</a><a th:href="@{/login}">Login</a>
+    </nav></div></header>
+<main class="section"><div class="container">
+    <h2 class="section__title">Нашите треньори</h2>
+    <div class="grid grid--3">
+        <article class="card" th:each="t : ${trainers}">
+            <h3 class="card__title" th:text="${t.name}">Име</h3>
+            <p class="card__text"><strong th:text="${t.specialty}">Специалност</strong></p>
+            <p class="card__text" th:text="${t.bio}">Био</p>
+        </article>
+    </div>
+</div></main>
+<footer class="site__footer"><div class="container footer__inner"><p>© 2025 My Fitness</p></div></footer>
+</body></html>
