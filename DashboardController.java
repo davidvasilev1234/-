@@ -1,15 +1,1 @@
-package app.controllers;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-
-@Controller
-public class DashboardController {
-
-    @GetMapping("/dashboard")
-    public String showDashboard(Model model) {
-        model.addAttribute("message", "Добре дошъл в системата!");
-        return "dashboard"; // dashboard.html
-    }
-}
